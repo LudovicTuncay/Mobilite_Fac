@@ -2,7 +2,7 @@
 
 ---
 Contexte : Projet C++ du cours d'informatique en M2 IMA. 
-Auteurs : @LudovicTuncay et @AugusteVerdier
+Auteurs : [Ludovic Tuncay](https://github.com/LudovicTuncay) et [Auguste Verdier](https://github.com/LilBabines)
 ---
 
 # Description du projet C++
