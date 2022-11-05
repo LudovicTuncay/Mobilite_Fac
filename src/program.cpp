@@ -1,22 +1,35 @@
-#include <module1/mod1c1.hpp>
-#include <module1/mod1c2.hpp>
-#include <module2/mod2c1.hpp>
-#include <module2/mod2c2.hpp>
-#include <program.hpp>
+#include <helper/commande.h>
+#include <emplacements/emplacement.h>
+#include <helper/coordonnees.h>
+
+#include <iostream>
+#include <stdexcept>
+#include <stdio.h>
+#include <string>
 
 int main()
 {
-   mod1c1 m1c1;
-   mod1c2 m1c2;
-   mod2c1 m2c1;
-   mod2c2 m2c2;
 
-   m1c1.foo();
-   m1c2.foo();
-   m2c1.foo();
-   m2c2.foo();
+   Commande c1("echo \"Hello World ! this is a test...\"");
+   c1.executer();
+   std::cout << c1;
 
-   program::foo();
+   Commande c2("sjqdqkjsdbqslkjd"); // Commande qui n'existe pas (pour tester le code d'erreur)
+   c2.executer();
+   std::cout << c2;
+
+   std::cout << std::endl;
+
+   CoordoneesGPS coords(1.0, 2.0);
+   std::cout << "Coordonnées : " << coords << std::endl
+             << std::endl;
+
+   Emplacement e1("Paris", coords);
+   std::cout << e1 << std::endl
+             << std::endl;
+
+   Emplacement e2("test", 1.1, 2.1);
+   std::cout << e2;
 
    return 0;
 }
