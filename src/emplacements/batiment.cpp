@@ -52,14 +52,6 @@ std::ostream &operator<<(std::ostream &os, const Batiment &batiment)
        << "--> Batiment   : " << batiment.nom << std::endl
        << "--> Coordonees : " << batiment.coordonees << std::endl
        << "--> Nb salles  : " << batiment.nbSalles << std::endl
-       << "--> # Salles   : " << batiment.nbSalles << std::endl
-       << "--> Salles     : " << std::endl;
-
-    for (int i = 0; i < batiment.nbSalles; i++)
-    {
-        os << batiment.salles[i] << std::endl;
-    }
-    os << "——————————————————————————————" << std::endl;
-
+       << "--> # Salles   : " << batiment.nbSalles << std::endl;
     return os;
 }
