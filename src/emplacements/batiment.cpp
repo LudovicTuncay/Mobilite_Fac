@@ -51,9 +51,7 @@ std::ostream &operator<<(std::ostream &os, const Batiment &batiment)
     os << "Batiment " << std::endl
        << "--> Batiment   : " << batiment.nom << std::endl
        << "--> Coordonees : " << batiment.coordonees << std::endl
-<<<<<<< HEAD
-       << "--> Nb salles  : " << batiment.nbSalles << std::endl;
-=======
+       << "--> Nb salles  : " << batiment.nbSalles << std::endl
        << "--> # Salles   : " << batiment.nbSalles << std::endl
        << "--> Salles     : " << std::endl;
 
@@ -63,6 +61,5 @@ std::ostream &operator<<(std::ostream &os, const Batiment &batiment)
     }
     os << "——————————————————————————————" << std::endl;
 
->>>>>>> parent of f2e4670 (fichiers data (vides))
     return os;
 }
