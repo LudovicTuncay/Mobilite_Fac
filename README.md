@@ -24,15 +24,9 @@ Plusieurs classes seraient nécéssaires, dont celles représentant les personne
 git clone https://github.com/LudovicTuncay/Mobilite_Fac.git
 ```
 
-## Compilation
+## Compilation et execution
 
 ```bash
 cd Mobilite_Fac
-make
-```
-
-## Exécution
-
-```bash
-./build/apps/program
+make run
 ```
