@@ -2,6 +2,12 @@
 #include <helper/coordonnees.h>
 #include <iostream>
 
+Emplacement::Emplacement()
+{
+    this->nom = "";
+    this->coordonees = CoordoneesGPS();
+}
+
 Emplacement::Emplacement(std::string nom, CoordoneesGPS coordonees)
 {
     this->nom = nom;
@@ -27,7 +33,7 @@ CoordoneesGPS Emplacement::getCoordonees()
 std::ostream &operator<<(std::ostream &os, const Emplacement &emplacement)
 {
     os << "Emplacement " << std::endl
-       << "\t-> Nom : " << emplacement.nom << std::endl
-       << "\t-> Coordonees : " << emplacement.coordonees << std::endl;
+       << "--> Nom : " << emplacement.nom << std::endl
+       << "--> Coordonees : " << emplacement.coordonees << std::endl;
     return os;
 }

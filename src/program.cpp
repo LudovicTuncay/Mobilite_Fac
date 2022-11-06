@@ -1,6 +1,8 @@
 #include <helper/commande.h>
-#include <emplacements/emplacement.h>
 #include <helper/coordonnees.h>
+#include <emplacements/emplacement.h>
+#include <emplacements/batiment.h>
+#include <emplacements/salle.h>
 
 #include <iostream>
 #include <stdexcept>
@@ -31,5 +33,29 @@ int main()
    Emplacement e2("test", 1.1, 2.1);
    std::cout << e2;
 
+   Batiment b1("U4", 1.2, 2.2);
+
+   Salle s1("212", &b1, 2);
+   std::cout << s1 << std::endl
+             << std::endl;
+
+   Salle s2("213", &b1, 2);
+   std::cout << s1 << std::endl
+             << std::endl;
+
+   std::cout << "————————————————————————————————————————————————" << std::endl
+             << std::endl
+             << std::endl
+             << std::endl;
+
+   b1.afficherSalles();
+
+   std::cout << "————————————————————————————————————————————————" << std::endl
+             << std::endl
+             << std::endl
+             << std::endl;
+
+   std::cout << b1 << std::endl
+             << std::endl;
    return 0;
 }
