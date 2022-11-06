@@ -49,11 +49,13 @@ Salle *Batiment::getSalles()
 std::ostream &operator<<(std::ostream &os, const Batiment &batiment)
 {
     os << "Batiment " << std::endl
-       << "--> Nom        : " << batiment.nom << std::endl
+       << "--> Batiment   : " << batiment.nom << std::endl
        << "--> Coordonees : " << batiment.coordonees << std::endl
-       << "--> Nb salles  : " << batiment.nbSalles << std::endl
-       << "--> Salles     : " << std::endl
-       << std::endl;
+<<<<<<< HEAD
+       << "--> Nb salles  : " << batiment.nbSalles << std::endl;
+=======
+       << "--> # Salles   : " << batiment.nbSalles << std::endl
+       << "--> Salles     : " << std::endl;
 
     for (int i = 0; i < batiment.nbSalles; i++)
     {
@@ -61,5 +63,6 @@ std::ostream &operator<<(std::ostream &os, const Batiment &batiment)
     }
     os << "——————————————————————————————" << std::endl;
 
+>>>>>>> parent of f2e4670 (fichiers data (vides))
     return os;
 }
