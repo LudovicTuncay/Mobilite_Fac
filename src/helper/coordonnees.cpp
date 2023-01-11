@@ -1,4 +1,5 @@
 #include <helper/coordonnees.h>
+#include <helper/commande.h>
 #include <iostream>
 
 CoordoneesGPS::CoordoneesGPS()
@@ -23,7 +24,13 @@ double CoordoneesGPS::getLongitude()
     return this->longitude;
 }
 
-std::ostream &operator<<(std::ostream &os, const CoordoneesGPS &coordonees)
+std::string CoordoneesGPS::to_string()
+{
+    return std::to_string(this->latitude) + "," + std::to_string(this->longitude);
+}
+
+std::ostream &
+operator<<(std::ostream &os, const CoordoneesGPS &coordonees)
 {
     os << "(" << coordonees.latitude << ", " << coordonees.longitude << ")";
     return os;

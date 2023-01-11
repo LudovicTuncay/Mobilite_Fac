@@ -4,7 +4,9 @@
 #include <emplacements/emplacement.h>
 #include <emplacements/batiment.h>
 
-class Batiment; // Déclaration anticipée de la classe Batiment pour éviter les erreurs de compilation liées aux dépendances circulaires
+// Déclaration anticipée des classes pour éviter les erreurs de compilation liées aux dépendances circulaires
+class Batiment;
+// class Emplacement;
 
 class Salle : public Emplacement
 {
@@ -18,6 +20,7 @@ public:
     Batiment *getBatiment();
     int getEtage();
 
-    // Operator overloading
-    friend std::ostream &operator<<(std::ostream &os, const Salle &salle);
+    // Retourne la durée depuis l'entrée du batiment pour arriver à l'entree de
+    // la salle (en secondes) -> formule : dureeDepuisEntree = (etage+1)*60
+    double dureeDepuisEntree();
 };

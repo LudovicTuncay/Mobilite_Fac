@@ -1,61 +1,61 @@
 #include <helper/commande.h>
 #include <helper/coordonnees.h>
+
 #include <emplacements/emplacement.h>
 #include <emplacements/batiment.h>
 #include <emplacements/salle.h>
+#include <emplacements/parking.h>
+
+#include <deplacements/trajet.h>
 
 #include <iostream>
 #include <stdexcept>
 #include <stdio.h>
 #include <string>
 
+// Batiment creerBatiment(std::string nom, double latitude, double longitude, Parking &parkingVelo, Parking &parkingVoiture)
+// {
+//    Batiment b(nom, latitude, longitude, parkingVelo, parkingVoiture);
+
+//    // Batiment b(nom, latitude, longitude, parkingVelo, parkingVoiture);
+//    // // Ajout de salles :
+//    // for (int i = 0; i < 3; i++)
+//    // {
+//    //    Salle s(std::to_string(i) + "01", &b, i);
+//    //    b.ajouterSalle(s);
+//    // }
+//    return b;
+// }
+
+Batiment creerBatiment(std::string nom, double latitude, double longitude, Parking *parkingVelo, Parking *parkingVoiture)
+{
+   Batiment b(nom, latitude, longitude, parkingVelo, parkingVoiture);
+   // Ajout de salles :
+   for (int i = 0; i < 3; i++)
+   {
+      Salle s(std::to_string(i) + "01", &b, i);
+      // Lorsqu'on créé la salle, le batiment se voit automatiquement attribué
+      // la salle
+   }
+   return b;
+}
+
 int main()
 {
+   // TODO : remplacer les coordonnées par les vraies coordonnées !
+   Parking p1velo("Parking 1 velo", 0, 0);
+   Parking p2velo("Parking 2 velo", 0, 0);
+   Parking p1voiture("Parking 1 voiture", 0, 0);
+   Parking p2voiture("Parking 2 voiture", 0, 0);
 
-   Commande c1("echo \"Hello World ! this is a test...\"");
-   c1.executer();
-   std::cout << c1;
+   Batiment b_U1 = creerBatiment("Batiment U1", 0, 0, &p1velo, &p2voiture);
+   Batiment b_U2 = creerBatiment("Batiment U2", 0, 0, &p2velo, &p2voiture);
+   Batiment b_U3 = creerBatiment("Batiment U3", 0, 0, &p1velo, &p1voiture);
 
-   Commande c2("sjqdqkjsdbqslkjd"); // Commande qui n'existe pas (pour tester le code d'erreur)
-   c2.executer();
-   std::cout << c2;
+   // Affichage des informations des batiments
+   b_U1.afficher();
+   b_U2.afficher();
+   b_U3.afficher();
 
-   std::cout << std::endl;
-
-   CoordoneesGPS coords(1.0, 2.0);
-   std::cout << "Coordonnées : " << coords << std::endl
-             << std::endl;
-
-   Emplacement e1("Paris", coords);
-   std::cout << e1 << std::endl
-             << std::endl;
-
-   Emplacement e2("test", 1.1, 2.1);
-   std::cout << e2;
-
-   Batiment b1("U4", 1.2, 2.2);
-
-   Salle s1("212", &b1, 2);
-   std::cout << s1 << std::endl
-             << std::endl;
-
-   Salle s2("213", &b1, 2);
-   std::cout << s1 << std::endl
-             << std::endl;
-
-   std::cout << "————————————————————————————————————————————————" << std::endl
-             << std::endl
-             << std::endl
-             << std::endl;
-
-   b1.afficherSalles();
-
-   std::cout << "————————————————————————————————————————————————" << std::endl
-             << std::endl
-             << std::endl
-             << std::endl;
-
-   std::cout << b1 << std::endl
-             << std::endl;
-   return 0;
+   return 1;
 }

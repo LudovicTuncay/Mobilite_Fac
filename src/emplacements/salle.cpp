@@ -26,11 +26,9 @@ int Salle::getEtage()
     return this->etage;
 }
 
-std::ostream &operator<<(std::ostream &os, const Salle &salle)
+// Retourne la durée depuis l'entrée du batiment pour arriver à l'entree de
+// la salle (en secondes) -> formule : dureeDepuisEntree = (etage+1)*60
+double Salle::dureeDepuisEntree()
 {
-    os << "--> Salle      : " << salle.nom << std::endl
-       << "--> Coordonees : " << salle.coordonees << std::endl
-       << "--> Batiment   : " << salle.batiment->getNom() << std::endl
-       << "--> Etage      : " << salle.etage << std::endl;
-    return os;
+    return (this->etage + 1) * 60;
 }

@@ -1,28 +1,34 @@
 #pragma once
 
 #include <iostream>
-#include <emplacements/salle.h>
+#include <emplacements/parking.h>
 #include <emplacements/emplacement.h>
+#include <emplacements/salle.h>
 
-class Salle; // Déclaration anticipée de la classe Salle pour éviter les erreurs de compilation liées aux dépendances circulaires
+// Déclaration anticipée de certaine classes pour éviter les erreurs de compilation liées aux dépendances circulaires
+class Emplacement;
+class Salle;
+class Parking;
 
 // Classe qui hérite de Emplacement
 class Batiment : public Emplacement
 {
 protected:
     int maxSalles;
-    Salle *salles;
     int nbSalles;
+    Salle *salles;
+    Parking *parkingVeloPlusProche;
+    Parking *parkingVoiturePlusProche;
 
 public:
     Batiment();
-    Batiment(std::string nom, CoordoneesGPS coordonees);
-    Batiment(std::string nom, double latitude, double longitude);
+    Batiment(std::string nom, CoordoneesGPS coordonees, Parking *parkingVelo, Parking *parkingVoiture);
+    Batiment(std::string nom, double latitude, double longitude, Parking *parkingVelo, Parking *parkingVoiture);
     void ajouterSalle(Salle &s);
     void afficherSalles();
     int getNbSalles();
     Salle *getSalles();
 
-    // Operator overloading
-    friend std::ostream &operator<<(std::ostream &os, const Batiment &batiment);
+    // affichage des informations du batiment
+    void afficher();
 };
