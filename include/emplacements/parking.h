@@ -11,8 +11,8 @@ protected:
 
 public:
     Parking();
-    Parking(std::string nom, CoordoneesGPS coordonees, bool ParkingVelo = false);
-    Parking(std::string nom, double latitude, double longitude, bool ParkingVelo = false);
+    Parking(std::string nom, CoordoneesGPS coordonees, bool ParkingVelo);
+    Parking(std::string nom, double latitude, double longitude, bool ParkingVelo);
 
     bool isParkingVelo();
     bool isParkingVoiture();

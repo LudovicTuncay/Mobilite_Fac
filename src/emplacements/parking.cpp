@@ -7,18 +7,14 @@ Parking::Parking() : Emplacement()
     this->ParkingVelo = false;
 }
 
-Parking::Parking(std::string nom, CoordoneesGPS coordonees, bool ParkingVelo) : Emplacement(nom, coordonees)
+Parking::Parking(std::string nom, CoordoneesGPS coordonees, bool ParkingVelo) : Emplacement(nom, coordonees, this, nullptr)
 {
     this->ParkingVelo = ParkingVelo;
-    this->parkingVeloPlusProche = this;
-    this->parkingVoiturePlusProche = nullptr;
 }
 
-Parking::Parking(std::string nom, double latitude, double longitude, bool ParkingVelo) : Emplacement(nom, latitude, longitude)
+Parking::Parking(std::string nom, double latitude, double longitude, bool ParkingVelo) : Emplacement(nom, latitude, longitude, nullptr, this)
 {
     this->ParkingVelo = ParkingVelo;
-    this->parkingVeloPlusProche = this;
-    this->parkingVoiturePlusProche = nullptr;
 }
 
 bool Parking::isParkingVelo()
@@ -48,12 +44,13 @@ double Parking::dureeDepuisEntree()
 void Parking::afficher()
 {
     std::cout << "Parking " << std::endl
-              << "[*] Nom : " << nom << std::endl
-              << "[*] Coordonees : " << coordonees << std::endl
+              << "[*] Nom : " << this->nom << std::endl
+              << "[*] Coordonees : " << this->coordonees << std::endl
               << "[*] Parking pour " << this->getType() << std::endl;
 }
 
-std::ostream &operator<<(std::ostream &os, const Parking &parking)
+std::ostream &
+operator<<(std::ostream &os, const Parking &parking)
 {
     os << "Parking " << std::endl
        << "[*] Nom : " << parking.nom << std::endl

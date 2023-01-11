@@ -8,6 +8,8 @@
 
 #include <deplacements/trajet.h>
 
+#include <Utilisateur/utilisateur.h>
+
 #include <iostream>
 #include <stdexcept>
 #include <stdio.h>
@@ -40,22 +42,46 @@ Batiment creerBatiment(std::string nom, double latitude, double longitude, Parki
    return b;
 }
 
+#define PARKING_VELO 1
+#define PARKING_VOITURE 0
+
 int main()
 {
-   // TODO : remplacer les coordonnées par les vraies coordonnées !
-   Parking p1velo("Parking 1 velo", 0, 0);
-   Parking p2velo("Parking 2 velo", 0, 0);
-   Parking p1voiture("Parking 1 voiture", 0, 0);
-   Parking p2voiture("Parking 2 voiture", 0, 0);
+   Parking p_velo_U1_U2("Parking velo entre U1 et U2", 43.56066294848289, 1.4704106358671574, PARKING_VELO);
+   Parking p_voit_grand_RU2("Grand parking RU2 (Canal)", 43.56043216996784, 1.4726218021795812, PARKING_VOITURE);
+   Batiment b_U1 = creerBatiment("Batiment U1", 43.5603056863409, 1.470114678781177, &p_velo_U1_U2, &p_voit_grand_RU2);
 
-   Batiment b_U1 = creerBatiment("Batiment U1", 0, 0, &p1velo, &p2voiture);
-   Batiment b_U2 = creerBatiment("Batiment U2", 0, 0, &p2velo, &p2voiture);
-   Batiment b_U3 = creerBatiment("Batiment U3", 0, 0, &p1velo, &p1voiture);
+   Parking p_velo_U2("Parking velo entrée U2", 43.56167016293028, 1.4706031271464737, PARKING_VELO);
+   Parking p_voit_petit_RU2("Petit parking RU2 (Canal)", 43.56141490914014, 1.4714878632231323, PARKING_VOITURE);
+   Batiment b_U2 = creerBatiment("Batiment U2", 43.56146543485002, 1.4706671663951156, &p_velo_U2, &p_voit_petit_RU2);
 
-   // Affichage des informations des batiments
-   b_U1.afficher();
-   b_U2.afficher();
-   b_U3.afficher();
+   Parking p_velo_U3("Parking velo entrée U3", 43.562139630972965, 1.4701505934249586, PARKING_VELO);
+   Parking p_voit_STAPS("Parking piste de course STAPS", 43.56254237146542, 1.47137217938225, PARKING_VOITURE);
+   Batiment b_U3 = creerBatiment("Batiment U3", 43.56209310134519, 1.469841885779374, &p_velo_U3, &p_voit_STAPS);
 
+   Parking p_velo_U3_U4_U6("Parking velo entre U3, U4 et U6", 43.562447329993915, 1.4691455751359808, PARKING_VELO);
+   Parking p_voit_gymnases("Parking gymnases", 43.56376799479894, 1.469542286518094, PARKING_VOITURE);
+   Batiment b_U4 = creerBatiment("Batiment U4", 43.56279937123464, 1.4691599487302571, &p_velo_U3_U4_U6, &p_voit_gymnases);
+
+   Batiment b_U6 = creerBatiment("Batiment U6", 43.56275649191613, 1.4682717514403143, &p_velo_U3_U4_U6, &p_voit_gymnases);
+
+   Parking p_velo_RU1("Parking RU1 velo", 43.56195725349943, 1.463567659315997, PARKING_VELO);
+   Parking p_voit_RU1("Parking RU1 voiture", 43.56255426718022, 1.4638404832520777, PARKING_VOITURE);
+   Batiment RU1("RU1", 43.56220872417138, 1.4632832684834005, &p_velo_RU1, &p_voit_RU1);
+
+   Batiment RU2("RU2", 43.560936635472665, 1.471979265643556, &p_velo_U2, &p_voit_petit_RU2);
+
+   // RU1.afficher();
+
+   // RU1.getParkingVeloPlusProche()->afficher();
+   // RU1.getParkingVoiturePlusProche()->afficher();
+
+   std::string methodes[3] = {"voiture", "velo", "marche"};
+
+   Emplacement emplacements[7] = {b_U1, b_U2, b_U3, b_U4, b_U6, RU1, RU2};
+
+   Utilisateur u;
+
+   u.creerTrajet(emplacements, 7, methodes, 3);
    return 1;
 }

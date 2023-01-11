@@ -42,12 +42,13 @@ void Commande::executer()
     }
     this->exitCode = pclose(pipe);
     this->resultat = result;
+    // std::cout << *this;
 }
 
 std::ostream &operator<<(std::ostream &os, const Commande &commande)
 {
     os << " [*] commande : " << commande.commande << std::endl;
-    os << " [*] resultat : " << commande.resultat; // Pas de << std::endl; car le resultat contient deja un retour a la ligne
+    os << " [*] resultat : " << commande.resultat << std::endl;
     os << " [*] exitCode : " << commande.exitCode;
     if (commande.exitCode == 0)
     {

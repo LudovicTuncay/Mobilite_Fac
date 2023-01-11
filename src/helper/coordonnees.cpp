@@ -26,7 +26,7 @@ double CoordoneesGPS::getLongitude()
 
 std::string CoordoneesGPS::to_string()
 {
-    return std::to_string(this->latitude) + "," + std::to_string(this->longitude);
+    return std::to_string(this->longitude) + "," + std::to_string(this->latitude);
 }
 
 std::ostream &

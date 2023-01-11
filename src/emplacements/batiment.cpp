@@ -67,4 +67,6 @@ void Batiment::afficher()
               << "[*] Batiment   : " << this->nom << std::endl
               << "[*] Coordonees : " << this->coordonees << std::endl
               << "[*] # Salles   : " << this->nbSalles << std::endl;
+    //   << "[*] Parking Velo + proche    : " << this->parkingVeloPlusProche->getNom() << std::endl
+    //   << "[*] Parking Voiture + proche : " << this->parkingVoiturePlusProche->getNom() << std::endl;
 }

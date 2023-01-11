@@ -17,8 +17,6 @@ protected:
     int maxSalles;
     int nbSalles;
     Salle *salles;
-    Parking *parkingVeloPlusProche;
-    Parking *parkingVoiturePlusProche;
 
 public:
     Batiment();

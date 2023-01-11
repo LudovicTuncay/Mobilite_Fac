@@ -23,5 +23,5 @@ public:
     double dureeDeplacement();
 
     // Operator overloading
-    friend std::ostream &operator<<(std::ostream &os, const Deplacement &deplacement);
+    friend std::ostream &operator<<(std::ostream &os, Deplacement &deplacement);
 };

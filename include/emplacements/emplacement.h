@@ -19,7 +19,9 @@ protected:
 public:
     Emplacement();
     Emplacement(std::string nom, CoordoneesGPS coordonees);
+    Emplacement(std::string nom, CoordoneesGPS coordonees, Parking *parkingVeloPlusProche, Parking *parkingVoiturePlusProche);
     Emplacement(std::string nom, double latitude, double longitude);
+    Emplacement(std::string nom, double latitude, double longitude, Parking *parkingVeloPlusProche, Parking *parkingVoiturePlusProche);
     std::string getNom();
     CoordoneesGPS getCoordonees();
     Parking *getParkingVeloPlusProche();

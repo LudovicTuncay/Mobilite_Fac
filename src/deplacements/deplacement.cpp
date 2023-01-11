@@ -1,5 +1,6 @@
 #include "deplacements/deplacement.h"
 #include "helper/commande.h"
+#include "helper/fonctions.h"
 
 #include <iostream>
 
@@ -11,11 +12,22 @@ Deplacement::Deplacement()
     this->APIdata = "";
 }
 
+// double deplacement_marche(Emplacement emplacementDepart, Emplacement emplacementArrivee, int index)
+// {
+//     std::string commande_root = "curl --silent \"http://routing.openstreetmap.de/routed-foot/route/v1/driving/";
+//     std::string coords = emplacementDepart.coordonnees_to_string() + ";" + emplacementArrivee.coordonnees_to_string();
+//     std::string options = "?alternatives=false&overview=false\"";
+//     std::string cmd_string = commande_root + coords + options;
+//     Commande commande(cmd_string);                       // on cree la commande
+//     commande.executer();                                 // on execute la commande
+//     std::string APIdata[index] = commande.getResultat(); // on recupere le resultat de l'API
+// }
+
 Deplacement::Deplacement(Emplacement emplacementDepart, Emplacement emplacementArrivee, std::string methode)
 {
+    this->methode = methode;
     this->emplacementDepart = emplacementDepart;
     this->emplacementArrivee = emplacementArrivee;
-    this->methode = methode;
 
     // On va maintenant créer une commande qui va appeler l'API et recueillir les données
     // la partie initialisation de la commande curl est la meme pour toutes les requetes
@@ -24,31 +36,33 @@ Deplacement::Deplacement(Emplacement emplacementDepart, Emplacement emplacementA
     // la partie responsable de la methode de deplacement
     std::string methode_deplacement;
     if (methode == "voiture")
-        methode_deplacement = "car/";
-    else if (methode == "pieton")
-        methode_deplacement = "foot/";
+        methode_deplacement = "car/route/v1/driving/";
+    else if (methode == "marche")
+        methode_deplacement = "foot/route/v1/driving/";
     else if (methode == "velo")
-        methode_deplacement = "bike/";
+        methode_deplacement = "bike/route/v1/driving/";
     else
     {
         std::cerr << "Methode de deplacement inconnue" << std::endl;
         exit(1);
     }
+
     // la partie responsable des coordonnees
     std::string coords = emplacementDepart.coordonnees_to_string() + ";" + emplacementArrivee.coordonnees_to_string();
     // la partie responsable des options
-    std::string options = "?alternatives=false&overview=false";
+    std::string options = "?alternatives=false&overview=false\"";
 
     // on assemble tout
     std::string cmd_string = commande_root + methode_deplacement + coords + options;
 
     Commande commande(cmd_string);          // on cree la commande
     commande.executer();                    // on execute la commande
-    this->APIdata = commande.getResultat(); // on convertit le resultat en double
+    this->APIdata = commande.getResultat(); // on recupere le resultat de l'API
 }
 
 double Deplacement::dureeDeplacement()
 {
+
     std::string cmd_string = "echo '" + this->APIdata + "' | jq '.routes[0].duration'";
 
     Commande commande(cmd_string);            // on cree la commande
@@ -65,9 +79,9 @@ double Deplacement::distanceDeplacement()
     return std::stod(commande.getResultat()); // on convertit le resultat en double
 }
 
-std::ostream &operator<<(std::ostream &os, const Deplacement &deplacement)
+std::ostream &operator<<(std::ostream &os, Deplacement &deplacement)
 {
     // Surcharge de l'opérateur << pour afficher les détails du déplacement
-    os << deplacement.emplacementDepart << "--[" << deplacement.methode << "]--" << deplacement.emplacementArrivee << std::endl;
+    os << deplacement.emplacementDepart << "--[" << deplacement.methode << "]->" << deplacement.emplacementArrivee << "(" << meters_to_string(deplacement.distanceDeplacement()) << ", " << seconds_to_time(deplacement.dureeDeplacement()) << ")";
     return os;
 }

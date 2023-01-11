@@ -4,13 +4,16 @@
 #include "helper/coordonnees.h"
 #include "deplacements/deplacement.h"
 #include "emplacements/emplacement.h"
+#include "emplacements/parking.h"
 
 class Trajet
 {
     int nbEtapes;
     int maxEtapes;
-    Emplacement *etapes;
+    Emplacement **etapes;
     Deplacement *deplacements;
+    Parking *positionVoiture;
+    Parking *positionVelo;
 
 public:
     Trajet();
@@ -23,6 +26,8 @@ public:
 
     // Afficher le trajet
     void afficher();
+
+    int getNbEtapes();
 
     // Calculer la durée du trajet
     double dureeTrajet();
@@ -37,5 +42,5 @@ public:
     Trajet &operator+(Emplacement emplacement);
 
     // surcharge de l'opérateur << pour afficher le trajet
-    friend std::ostream &operator<<(std::ostream &os, const Trajet &trajet);
+    friend std::ostream &operator<<(std::ostream &os, Trajet &trajet);
 };

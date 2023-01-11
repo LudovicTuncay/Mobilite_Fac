@@ -11,17 +11,13 @@ class Utilisateur
 public:
     Utilisateur();
 
-    void ajouterEtape(CoordoneesGPS coords, std::string methode);
-
-    void afficherTrajet();
-
     double getDistanceTotale();
     double getDureeTotale();
 
     // Création d'un trajet à partir de l'entrée standard (clavier)
     // L'utilisateur va entrer les étapes du trajet (salle)
-    void CreerTrajet();
+    void creerTrajet(Emplacement *emplacements, int nb_emplacements, std::string *methodes, int nb_methodes);
 
     // Operator overloading
-    friend std::ostream &operator<<(std::ostream &os, const Utilisateur &utilisateur);
+    friend std::ostream &operator<<(std::ostream &os, Utilisateur &utilisateur);
 };

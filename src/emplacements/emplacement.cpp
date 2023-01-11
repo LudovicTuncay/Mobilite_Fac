@@ -16,10 +16,26 @@ Emplacement::Emplacement(std::string nom, CoordoneesGPS coordonees)
     this->coordonees = coordonees;
 }
 
+Emplacement::Emplacement(std::string nom, CoordoneesGPS coordonees, Parking *parkingVeloPlusProche, Parking *parkingVoiturePlusProche)
+{
+    this->nom = nom;
+    this->coordonees = coordonees;
+    this->parkingVeloPlusProche = parkingVeloPlusProche;
+    this->parkingVoiturePlusProche = parkingVoiturePlusProche;
+}
+
 Emplacement::Emplacement(std::string nom, double latitude, double longitude)
 {
     this->nom = nom;
     this->coordonees = CoordoneesGPS(latitude, longitude);
+}
+
+Emplacement::Emplacement(std::string nom, double latitude, double longitude, Parking *parkingVeloPlusProche, Parking *parkingVoiturePlusProche)
+{
+    this->nom = nom;
+    this->coordonees = CoordoneesGPS(latitude, longitude);
+    this->parkingVeloPlusProche = parkingVeloPlusProche;
+    this->parkingVoiturePlusProche = parkingVoiturePlusProche;
 }
 
 std::string Emplacement::getNom()
@@ -71,6 +87,6 @@ void Emplacement::afficher()
 
 std::ostream &operator<<(std::ostream &os, const Emplacement &emplacement)
 {
-    os << emplacement.nom << std::endl;
+    os << emplacement.nom;
     return os;
 }
