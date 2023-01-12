@@ -33,17 +33,19 @@ Batiment creerBatiment(std::string nom, double latitude, double longitude, Parki
 
 void exemplePolymorphisme()
 {
-   Parking p_velo_RU1("Parking RU1 velo", 43.56195725349943, 1.463567659315997, PARKING_VELO);
-   Parking p_voit_RU1("Parking RU1 voiture", 43.56255426718022, 1.4638404832520777, PARKING_VOITURE);
-   Batiment RU1("RU1", 43.56220872417138, 1.4632832684834005, &p_velo_RU1, &p_voit_RU1);
+   Parking p_velo("Parking RU1 velo", 0, 0, PARKING_VELO);
+   Parking p_voit("Parking RU1 voiture", 0, 0, PARKING_VOITURE);
+   Batiment b("RU1", 0, 0, &p_velo, &p_voit);
+
+   std::cout << "Si les 3 valeurs sont identiques, alors la fonction virtuelle correcte n'est pas appelée" << std::endl;
 
    Emplacement *e;
-   e = &p_velo_RU1;
-   std::cout << e->dureeDepuisEntree() << std::endl;
-   e = &p_voit_RU1;
-   std::cout << e->dureeDepuisEntree() << std::endl;
-   e = &RU1;
-   std::cout << e->dureeDepuisEntree() << std::endl;
+   e = &p_velo;
+   std::cout << "Durée depuis l'entrée d'un parking à vélo      : " << e->dureeDepuisEntree() << std::endl;
+   e = &p_voit;
+   std::cout << "Durée depuis l'entrée d'un parking de voitures : " << e->dureeDepuisEntree() << std::endl;
+   e = &b;
+   std::cout << "Durée depuis l'entrée d'un batiment            : " << e->dureeDepuisEntree() << std::endl;
    // La bonne fonction virtuelle est appellée si les 3 valeurs sont différentes.
 }
 
@@ -84,13 +86,20 @@ void gestionParcours()
 
 void selectExemple()
 {
+   std::string user_input;
    do
    {
-      std::string user_input;
       std::cout << "Choisissez un exemple : " << std::endl;
       std::cout << "1 - Exemple de polymorphisme" << std::endl;
       std::cout << "2 - Exemple de gestion de parcours" << std::endl;
+
+      std::cin >> user_input;
    } while (user_input != "1" && user_input != "2");
+
+   if (user_input == "1")
+      exemplePolymorphisme();
+   else if (user_input == "2")
+      gestionParcours();
 }
 
 int main()

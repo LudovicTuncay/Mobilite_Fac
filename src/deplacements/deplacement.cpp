@@ -68,7 +68,7 @@ double Deplacement::dureeDeplacement()
     Commande commande(cmd_string); // on cree la commande
     commande.executer();           // on execute la commande
     Emplacement *emplacementDepart;
-    emplacementDepart = = &(this->emplacementDepart);
+    emplacementDepart = &(this->emplacementDepart);
     Emplacement *emplacementArrivee;
     emplacementArrivee = &(this->emplacementArrivee);
     double durees_depuis_entrees = emplacementDepart->dureeDepuisEntree() + emplacementArrivee->dureeDepuisEntree();
