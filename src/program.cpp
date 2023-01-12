@@ -15,20 +15,6 @@
 #include <stdio.h>
 #include <string>
 
-// Batiment creerBatiment(std::string nom, double latitude, double longitude, Parking &parkingVelo, Parking &parkingVoiture)
-// {
-//    Batiment b(nom, latitude, longitude, parkingVelo, parkingVoiture);
-
-//    // Batiment b(nom, latitude, longitude, parkingVelo, parkingVoiture);
-//    // // Ajout de salles :
-//    // for (int i = 0; i < 3; i++)
-//    // {
-//    //    Salle s(std::to_string(i) + "01", &b, i);
-//    //    b.ajouterSalle(s);
-//    // }
-//    return b;
-// }
-
 Batiment creerBatiment(std::string nom, double latitude, double longitude, Parking *parkingVelo, Parking *parkingVoiture)
 {
    Batiment b(nom, latitude, longitude, parkingVelo, parkingVoiture);
@@ -45,7 +31,23 @@ Batiment creerBatiment(std::string nom, double latitude, double longitude, Parki
 #define PARKING_VELO 1
 #define PARKING_VOITURE 0
 
-int main()
+void exemplePolymorphisme()
+{
+   Parking p_velo_RU1("Parking RU1 velo", 43.56195725349943, 1.463567659315997, PARKING_VELO);
+   Parking p_voit_RU1("Parking RU1 voiture", 43.56255426718022, 1.4638404832520777, PARKING_VOITURE);
+   Batiment RU1("RU1", 43.56220872417138, 1.4632832684834005, &p_velo_RU1, &p_voit_RU1);
+
+   Emplacement *e;
+   e = &p_velo_RU1;
+   std::cout << e->dureeDepuisEntree() << std::endl;
+   e = &p_voit_RU1;
+   std::cout << e->dureeDepuisEntree() << std::endl;
+   e = &RU1;
+   std::cout << e->dureeDepuisEntree() << std::endl;
+   // La bonne fonction virtuelle est appellée si les 3 valeurs sont différentes.
+}
+
+void gestionParcours()
 {
    Parking p_velo_U1_U2("Parking velo entre U1 et U2", 43.56066294848289, 1.4704106358671574, PARKING_VELO);
    Parking p_voit_grand_RU2("Grand parking RU2 (Canal)", 43.56043216996784, 1.4726218021795812, PARKING_VOITURE);
@@ -71,19 +73,6 @@ int main()
 
    Batiment RU2("RU2", 43.560936635472665, 1.471979265643556, &p_velo_U2, &p_voit_petit_RU2);
 
-   // // Exemple de polymorphisme
-   // Emplacement *e;
-   // e = &p_velo_RU1;
-   // std::cout << e->dureeDepuisEntree() << std::endl;
-   // e = &p_voit_RU1;
-   // std::cout << e->dureeDepuisEntree() << std::endl;
-   // e = &RU1;
-   // std::cout << e->dureeDepuisEntree() << std::endl;
-   // La bonne fonction virtuelle est appellée
-
-   // On a aussi de l'heritage de classes avec Emplacement étant la classe mère
-   // de Batiment Parking et Salles
-
    std::string methodes[3] = {"voiture", "velo", "marche"};
 
    Emplacement emplacements[7] = {b_U1, b_U2, b_U3, b_U4, b_U6, RU1, RU2};
@@ -91,6 +80,21 @@ int main()
    Utilisateur u;
 
    u.creerTrajet(emplacements, 7, methodes, 3);
+}
 
+void selectExemple()
+{
+   do
+   {
+      std::string user_input;
+      std::cout << "Choisissez un exemple : " << std::endl;
+      std::cout << "1 - Exemple de polymorphisme" << std::endl;
+      std::cout << "2 - Exemple de gestion de parcours" << std::endl;
+   } while (user_input != "1" && user_input != "2");
+}
+
+int main()
+{
+   selectExemple();
    return 1;
 }
