@@ -39,7 +39,7 @@ public:
     Emplacement &operator[](int index);
 
     // Surcharge de l'opérateur + pour ajouter un déplacement au trajet
-    Trajet &operator+(Emplacement emplacement);
+    Trajet operator+(Emplacement emplacement);
 
     // surcharge de l'opérateur << pour afficher le trajet
     friend std::ostream &operator<<(std::ostream &os, Trajet &trajet);

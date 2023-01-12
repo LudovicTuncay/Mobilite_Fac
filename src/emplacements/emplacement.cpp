@@ -53,10 +53,10 @@ std::string Emplacement::coordonnees_to_string()
     return this->coordonees.to_string();
 }
 
-double Emplacement::dureeDepuisEntree()
-{
-    return 0;
-}
+// double Emplacement::dureeDepuisEntree()
+// {
+//     return 0;
+// }
 
 Parking *Emplacement::getParkingVeloPlusProche()
 {

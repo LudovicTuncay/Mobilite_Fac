@@ -75,7 +75,10 @@ void Trajet::ajouterEtape(Emplacement emplacement, std::string methode)
         nbEtapes++;
     }
     else
+    {
         std::cout << "Erreur: Le trajet est déjà complet" << std::endl;
+        exit(2);
+    }
 }
 
 void Trajet::afficher()
@@ -116,7 +119,7 @@ Emplacement &Trajet::operator[](int index)
     return *etapes[index];
 }
 
-Trajet &Trajet::operator+(Emplacement emplacement)
+Trajet Trajet::operator+(Emplacement emplacement)
 {
     if (nbEtapes == 0)
     {
@@ -124,7 +127,7 @@ Trajet &Trajet::operator+(Emplacement emplacement)
     }
     else
     {
-        this->ajouterEtape(emplacement, "walking");
+        this->ajouterEtape(emplacement, "marche");
     }
     return *this;
 }

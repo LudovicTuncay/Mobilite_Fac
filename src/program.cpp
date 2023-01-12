@@ -71,10 +71,18 @@ int main()
 
    Batiment RU2("RU2", 43.560936635472665, 1.471979265643556, &p_velo_U2, &p_voit_petit_RU2);
 
-   // RU1.afficher();
+   // // Exemple de polymorphisme
+   // Emplacement *e;
+   // e = &p_velo_RU1;
+   // std::cout << e->dureeDepuisEntree() << std::endl;
+   // e = &p_voit_RU1;
+   // std::cout << e->dureeDepuisEntree() << std::endl;
+   // e = &RU1;
+   // std::cout << e->dureeDepuisEntree() << std::endl;
+   // La bonne fonction virtuelle est appellée
 
-   // RU1.getParkingVeloPlusProche()->afficher();
-   // RU1.getParkingVoiturePlusProche()->afficher();
+   // On a aussi de l'heritage de classes avec Emplacement étant la classe mère
+   // de Batiment Parking et Salles
 
    std::string methodes[3] = {"voiture", "velo", "marche"};
 
@@ -83,5 +91,6 @@ int main()
    Utilisateur u;
 
    u.creerTrajet(emplacements, 7, methodes, 3);
+
    return 1;
 }

@@ -65,9 +65,14 @@ double Deplacement::dureeDeplacement()
 
     std::string cmd_string = "echo '" + this->APIdata + "' | jq '.routes[0].duration'";
 
-    Commande commande(cmd_string);            // on cree la commande
-    commande.executer();                      // on execute la commande
-    return std::stod(commande.getResultat()); // on convertit le resultat en double
+    Commande commande(cmd_string); // on cree la commande
+    commande.executer();           // on execute la commande
+    Emplacement *emplacementDepart;
+    emplacementDepart = = &(this->emplacementDepart);
+    Emplacement *emplacementArrivee;
+    emplacementArrivee = &(this->emplacementArrivee);
+    double durees_depuis_entrees = emplacementDepart->dureeDepuisEntree() + emplacementArrivee->dureeDepuisEntree();
+    return std::stod(commande.getResultat()) + durees_depuis_entrees; // on convertit le resultat en double
 }
 
 double Deplacement::distanceDeplacement()
@@ -82,6 +87,6 @@ double Deplacement::distanceDeplacement()
 std::ostream &operator<<(std::ostream &os, Deplacement &deplacement)
 {
     // Surcharge de l'opérateur << pour afficher les détails du déplacement
-    os << deplacement.emplacementDepart << "--[" << deplacement.methode << "]->" << deplacement.emplacementArrivee << "(" << meters_to_string(deplacement.distanceDeplacement()) << ", " << seconds_to_time(deplacement.dureeDeplacement()) << ")";
+    os << deplacement.emplacementDepart << "--[" << deplacement.methode << "]->" << deplacement.emplacementArrivee << "\t(" << meters_to_string(deplacement.distanceDeplacement()) << ", " << seconds_to_time(deplacement.dureeDeplacement()) << ")";
     return os;
 }

@@ -32,7 +32,7 @@ public:
     std::string coordonnees_to_string();
     void afficher();
 
-    double dureeDepuisEntree();
+    virtual double dureeDepuisEntree() { return 0; }
 
     // Operator overloading
     friend std::ostream &operator<<(std::ostream &os, const Emplacement &emplacement);
