@@ -1,3 +1,5 @@
+// Auteurs : Ludovic TUNCAY et Auguste VERDIER
+
 #include "deplacements/deplacement.h"
 #include "helper/commande.h"
 #include "helper/fonctions.h"

@@ -1,3 +1,5 @@
+// Auteurs : Ludovic TUNCAY et Auguste VERDIER
+
 #include "helper/fonctions.h"
 
 std::string seconds_to_time(const double s)

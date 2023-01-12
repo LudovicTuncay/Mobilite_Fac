@@ -1,3 +1,5 @@
+// Auteurs : Ludovic TUNCAY et Auguste VERDIER
+
 #include <emplacements/salle.h>
 #include <emplacements/batiment.h>
 

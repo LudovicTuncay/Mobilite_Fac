@@ -1,3 +1,5 @@
+// Auteurs : Ludovic TUNCAY et Auguste VERDIER
+
 #include <Utilisateur/utilisateur.h>
 
 Utilisateur::Utilisateur()

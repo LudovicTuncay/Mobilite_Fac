@@ -4,8 +4,10 @@
 #include <string>
 
 #include "helper/coordonnees.h"
+// Auteurs : Ludovic TUNCAY et Auguste VERDIER
 
-// #include "emplacements/parking.h"
+#pragma once
+
 class Parking;
 
 class Emplacement

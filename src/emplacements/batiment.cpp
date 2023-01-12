@@ -1,3 +1,5 @@
+// Auteurs : Ludovic TUNCAY et Auguste VERDIER
+
 #include <emplacements/batiment.h>
 
 #include <iostream>

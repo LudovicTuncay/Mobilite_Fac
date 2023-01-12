@@ -1,4 +1,4 @@
-// #pragma once
+// Auteurs : Ludovic TUNCAY et Auguste VERDIER
 
 #include <iostream>
 #include "deplacements/trajet.h"

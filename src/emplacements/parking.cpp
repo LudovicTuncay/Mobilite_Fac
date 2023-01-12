@@ -1,3 +1,5 @@
+// Auteurs : Ludovic TUNCAY et Auguste VERDIER
+
 #include "emplacements/parking.h"
 #include <iostream>
 #include <string>

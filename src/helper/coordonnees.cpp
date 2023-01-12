@@ -1,3 +1,5 @@
+// Auteurs : Ludovic TUNCAY et Auguste VERDIER
+
 #include <helper/coordonnees.h>
 #include <helper/commande.h>
 #include <iostream>

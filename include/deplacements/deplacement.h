@@ -1,3 +1,5 @@
+// Auteurs : Ludovic TUNCAY et Auguste VERDIER
+
 #pragma once
 
 #include <emplacements/emplacement.h>

@@ -1,3 +1,5 @@
+// Auteurs : Ludovic TUNCAY et Auguste VERDIER
+
 #include <emplacements/emplacement.h>
 #include <helper/coordonnees.h>
 #include <iostream>
